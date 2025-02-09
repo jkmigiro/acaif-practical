@@ -1,5 +1,5 @@
 'use client'
-import { Alert, Button, Form, FormProps, Input, Select, message } from "antd";
+import { Alert, Button, Form, FormProps, Input, message } from "antd";
 import { useCreateUser } from "@/app/services/api";
 import { useCallback, useState } from "react";
 

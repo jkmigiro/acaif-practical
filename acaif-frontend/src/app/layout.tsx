@@ -1,6 +1,5 @@
 'use client'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Geist, Geist_Mono } from "next/font/google";
 import {  Button, Layout, Menu } from 'antd';
 import '@ant-design/v5-patch-for-react-19';
 
