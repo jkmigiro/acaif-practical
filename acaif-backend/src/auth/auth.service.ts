@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException, UnauthorizedException } from "@nestjs/common";
+import { Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
@@ -17,10 +17,7 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException("User not found.")
     }
-    Logger.log("User: ", user)
-    Logger.log("Comparing {", password, "} and {", user.password, "}")
     const isMatch = await bcrypt.compare(password, user.password);
-    Logger.log("Password matched? ", isMatch)
     if (!isMatch) {
       throw new UnauthorizedException("Invalid credentials");
     }
@@ -30,7 +27,6 @@ export class AuthService {
 
   async login(user: { email: string; password: string }) {
     const validUser = await this.validateUser(user.email, user.password);
-    Logger.log("Valid user: ",validUser)
     return { token: this.jwtService.sign(validUser.toJSON()),_id: validUser._id,email: validUser.email };;
   }
 }

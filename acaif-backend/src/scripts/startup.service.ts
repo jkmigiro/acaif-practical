@@ -1,4 +1,4 @@
-import { Injectable, Logger, OnModuleInit } from "@nestjs/common";
+import { Injectable, OnModuleInit } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import mongoose, { Model } from "mongoose";
 import { Campaign, CampaignDocument } from "src/schemas/campaign.schema";
@@ -14,11 +14,8 @@ export class StartupScriptService implements OnModuleInit {
         @InjectModel(Submission.name) private submissionModel: Model<SubmissionDocument>) { }
 
     async onModuleInit() {
-        console.log("Seeding database...");
-
         await this.userModel.collection.drop().catch((err) => {
             if (err.code === 26) {
-                Logger.log("Collection does not exist yet, skipping drop.");
             } else {
                 throw err;
             }
@@ -26,7 +23,6 @@ export class StartupScriptService implements OnModuleInit {
 
         await this.campaignModel.collection.drop().catch((err) => {
             if (err.code === 26) {
-                Logger.log("Collection does not exist yet, skipping drop.");
             } else {
                 throw err;
             }
@@ -34,7 +30,6 @@ export class StartupScriptService implements OnModuleInit {
 
         await this.submissionModel.collection.drop().catch((err) => {
             if (err.code === 26) {
-                Logger.log("Collection does not exist yet, skipping drop.");
             } else {
                 throw err;
             }
@@ -97,9 +92,8 @@ export class StartupScriptService implements OnModuleInit {
             userId: savedUsers[0]._id,
         }
     ]
-    Logger.log("Saved users: ",savedUsers)
-    Logger.log("Saved campaigns: ",savedCampaigns)
-    const savedSubmissions=await this.submissionModel.insertMany(submissions);
+
+    await this.submissionModel.insertMany(submissions);
    
       
     }

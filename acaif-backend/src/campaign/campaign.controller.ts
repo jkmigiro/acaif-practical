@@ -1,5 +1,5 @@
 
-import { Controller, Get, Post, Body, Logger, Param, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query, UseGuards } from '@nestjs/common';
 
 import { Campaign } from 'src/schemas/campaign.schema';
 import { CampaignService } from './campaign.service';
@@ -32,7 +32,6 @@ export class CampaignController {
   @Get(':id')
   @UseGuards(AuthGuard("jwt"))
   async findById(@Param() params: any): Promise<Campaign | null> {
-     Logger.log("")
       return this.campaignService.findById(params.id)
   }
 }
