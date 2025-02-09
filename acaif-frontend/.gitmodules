@@ -1,0 +1,6 @@
+[submodule "acaif-frontend"]
+	path = acaif-frontend
+	url = ./acaif-frontend
+[submodule "acaif-backend"]
+	path = acaif-backend
+	url = ./acaif-backend
