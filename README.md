@@ -26,19 +26,19 @@ This is a **Fullstack Influencer Campaign Platform** built using **Next.js, Nest
 ## 🔧 Installation & Setup
 ### 1️⃣ Clone the Repository
 ```sh
-git clone https://github.com/your-repo.git
-cd your-repo
+git clone https://github.com/jkmigiro/acaif-practical
+cd acaif-practical
 ```
 
 ### 2️⃣ Install Dependencies
 #### Frontend:
 ```sh
-cd frontend
+cd acaif-frontend
 npm install
 ```
 #### Backend:
 ```sh
-cd backend
+cd acaif-backend
 npm install
 ```
 
@@ -47,11 +47,11 @@ npm install
 1. Download MongoDB from [MongoDB Download Center](https://www.mongodb.com/try/download/community)
 2. Follow installation instructions for your OS
 
-### 5️4️⃣  Run the Application
+### 4️⃣  Run the Application
 #### Start Backend:
 ```sh
-cd backend
-npm run start:dev
+cd acaif-backend
+nest start
 ```
 #### Start Frontend:
 ```sh
@@ -60,8 +60,8 @@ npm run dev
 ```
 
 ### 6️⃣ Access the App
-- **Frontend:** `http://localhost:3000`
-- **Backend API:** `http://localhost:5000/api`
+- **Frontend:** `http://localhost:3000/`
+- **Backend API:** `http://localhost:5000/`
 
 ## 🛡️ Authentication & Authorization
 - **JWT Authentication** is implemented using NestJS Guards.
