@@ -3,14 +3,12 @@ import { Alert, Button, Form, FormProps, Input, Select, message } from "antd";
 import { useCreateUser } from "@/app/services/api";
 import { useCallback, useState } from "react";
 
-const { Option } = Select;
-
 const CreateUser: React.FC = () => {
   const [form] = Form.useForm();
   const [isPending,setIsPending]=useState<boolean>(false)
  const registerMutation = useCreateUser();
   // Handle form submission
-  const onFinish = (values: any) => {
+  const onFinish = (values) => {
     setIsPending(true)
     registerMutation.mutate(values, {
       onSuccess: (data) => {
@@ -28,7 +26,7 @@ const CreateUser: React.FC = () => {
   };
 
   const onFinishFailed: FormProps["onFinishFailed"] = useCallback(
-    (error: any) => {
+    () => {
         return <Alert message="Failed to submit details" type="error" />;
     },
     [],

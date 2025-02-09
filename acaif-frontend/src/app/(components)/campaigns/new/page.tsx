@@ -1,7 +1,6 @@
 'use client'
 import { useCallback, useState } from "react";
 import { Button, Form, Input, DatePicker, Select, message, FormProps, Alert, Card } from "antd";
-import dayjs from "dayjs";
 import { useSubmitCampaign } from "@/app/services/api";
 import {  useRouter } from "next/navigation";
 
@@ -14,19 +13,19 @@ const CreateCampaignComponent: React.FC = () => {
     const [isPending, setIsPending] = useState<boolean>(false)
     const newCampaignMutation=useSubmitCampaign()
     // Handle form submission
-    const onFinish = (values: any) => {
+    const onFinish = (values) => {
         const formattedData = {
             ...values,
             deadline: values.deadline?.$d
         };
         setIsPending(true)
-        newCampaignMutation.mutate(values, {
+        newCampaignMutation.mutate(formattedData, {
         onSuccess: () => {
           message.success("Submission successful!")
           setIsPending(false)
           router.push("/campaigns")
         },
-        onError: (error) => {
+        onError: () => {
             setIsPending(false)
             message.error("Submission failed")
         },
@@ -35,7 +34,7 @@ const CreateCampaignComponent: React.FC = () => {
 
     };
     const onFinishFailed: FormProps["onFinishFailed"] = useCallback(
-        (error: any) => {
+        () => {
             return <Alert message="Failed to submit details" type="error" />;
         },
         [],

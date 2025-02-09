@@ -49,7 +49,7 @@ export default function CampaignListComponent() {
       title: "Action",
       dataIndex: "",
       key: "x",
-      render: (_: any, record: Campaign) => {
+      render: (_, record: Campaign) => {
         return (
           <Space size={"middle"}>
             <EyeOutlined onClick={() => router.push(`/campaigns/${record._id}`)} />

@@ -1,7 +1,7 @@
 'use client'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Breadcrumb, Button, Layout, Menu, theme } from 'antd';
+import {  Button, Layout, Menu } from 'antd';
 import '@ant-design/v5-patch-for-react-19';
 
 
@@ -12,16 +12,6 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 
 const queryClient = new QueryClient();
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 
 export default function RootLayout({
   children,

@@ -14,7 +14,7 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/acaif'),
+    MongooseModule.forRoot(process.env.DB_URL),
     MongooseModule.forFeature([
       { name: Campaign.name, schema: CampaignSchema },
       { name: User.name, schema: UserSchema },

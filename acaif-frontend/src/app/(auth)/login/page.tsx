@@ -14,7 +14,7 @@ const Login: React.FC = () => {
   const onFinish = (values: { email: string; password: string }) => {
     setLoading(true);
     loginMutation.mutate(values, {
-      onSuccess: (data) => {
+      onSuccess: () => {
         message.success("Submission successful!")
         setLoading(false)
         router.push("/campaigns")

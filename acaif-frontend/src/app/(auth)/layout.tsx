@@ -1,11 +1,7 @@
 'use client'
-import { Breadcrumb, Button, Card, Layout, Menu, theme } from 'antd';
+import { Layout } from 'antd';
 import '@ant-design/v5-patch-for-react-19';
-import { useParams, usePathname, useRouter } from 'next/navigation';
-import { useMemo } from 'react';
-
-
-const { Header, Content, Footer } = Layout;
+import {  usePathname } from 'next/navigation';
 
 export default function CampaignLayout({
     children,

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Popconfirm } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteOutlined } from "@ant-design/icons";
 export const DeletePopper: React.FC<{
   action: (key: React.Key | null | undefined) => Promise<string>;
   id: React.Key | null | undefined;

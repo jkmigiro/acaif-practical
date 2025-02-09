@@ -17,7 +17,7 @@ export default function CampaignItemComponent() {
   const { data: campaign, isLoading, error } = useFetchCampaignDetails(id as string);
   const submitMutation = useSubmitCampaignContent(id as string);
   const [current, setCurrent] = useState(campaign)
-  const onSubmit = (values:any) => {
+  const onSubmit = (values) => {
     values.deadline= values.deadline?.$d
     values._id=current?._id
     submitMutation.mutate(values, {
@@ -44,7 +44,7 @@ export default function CampaignItemComponent() {
     }
 
     setCurrent(campaign)
-  },[isLoading])
+  },[isLoading,campaign,form])
 
   return (
     <div>
