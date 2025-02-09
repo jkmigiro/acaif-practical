@@ -61,7 +61,10 @@ export default function RootLayout({
       fontWeight: "bold",
     }}
     onClick={() => {
-      localStorage.clear()
+      if (typeof window !== "undefined"){
+        localStorage.clear()
+      };
+
       redirect("/login")
     }}
   >

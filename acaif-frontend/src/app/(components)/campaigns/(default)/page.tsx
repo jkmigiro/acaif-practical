@@ -17,7 +17,7 @@ import dayjs from "dayjs";
 export default function CampaignListComponent() {
   
 
-  const { data: campaigns, isLoading, error } = useFetchCampaignsByUser(localStorage.getItem("userId"))
+  const { data: campaigns, isLoading, error } = useFetchCampaignsByUser(typeof window === "undefined" ? null :localStorage.getItem("userId"))
   const router = useRouter()
   if (isLoading) return <Spin size="large" />;
   if (error) return <Alert message="Failed to load campaigns" type="error" />;

@@ -5,8 +5,8 @@ import { useCallback, useState } from "react";
 
 const CreateUser: React.FC = () => {
   const [form] = Form.useForm();
-  const [isPending,setIsPending]=useState<boolean>(false)
- const registerMutation = useCreateUser();
+  const [isPending, setIsPending] = useState<boolean>(false)
+  const registerMutation = useCreateUser();
   // Handle form submission
   const onFinish = (values) => {
     setIsPending(true)
@@ -14,23 +14,26 @@ const CreateUser: React.FC = () => {
       onSuccess: (data) => {
         message.success("Submission successful!")
         setIsPending(false)
-        localStorage.setItem("user",JSON.stringify(data))
-        if(data._id){
-          localStorage.setItem("userId",data._id)
-        }
+        if (typeof window !== "undefined") {
+          localStorage.setItem("user", JSON.stringify(data))
+          if (data._id) {
+            localStorage.setItem("userId", data._id)
+          }
+        };
+
       },
       onError: () => message.error("Failed to submit."),
     });
-  
-    
+
+
   };
 
   const onFinishFailed: FormProps["onFinishFailed"] = useCallback(
     () => {
-        return <Alert message="Failed to submit details" type="error" />;
+      return <Alert message="Failed to submit details" type="error" />;
     },
     [],
-);
+  );
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish} onFinishFailed={onFinishFailed}>

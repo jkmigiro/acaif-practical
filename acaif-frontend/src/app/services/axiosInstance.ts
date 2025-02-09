@@ -9,7 +9,10 @@ const api = axios.create({
 //api interceptor
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+    let token: string|null|undefined;
+    if (typeof window !== "undefined"){
+       token = localStorage.getItem("token");
+    };
 
     if (!config.url?.includes("/auth/login") && !config.url?.includes("/users") && token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -28,7 +31,9 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
     //  console.error("Unauthorized! Redirecting to login...");
       message.error("Please log in")
-      localStorage.removeItem("token");
+      if (typeof window !== "undefined"){
+        localStorage.removeItem("token");
+     };
       redirect("/login")
     }
     return Promise.reject(error);

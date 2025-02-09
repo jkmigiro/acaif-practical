@@ -63,12 +63,15 @@ export const useSubmitCampaign = () => {
 
   return useMutation({
     mutationFn: async (content: Campaign) => {
-      if (!localStorage.getItem("user")) {
-        message.error("No user logged in.")
-        throw new Error("User not found.")
-      }
-
+      if (typeof window !== "undefined") {
+        if (!localStorage.getItem("user")) {
+          message.error("No user logged in.")
+          throw new Error("User not found.")
+        }
       content.userId = localStorage.getItem("userId")
+      };
+
+
       const response = await api.post<Campaign>(`${API_BASE_URL}/campaigns/`, content)
       return response.data;
     },
@@ -101,9 +104,13 @@ export const useLogin = () => {
     onSuccess: (data) => {
       // Fetch campaigns list
       message.success("Login successful!");
-      localStorage.setItem("user", JSON.stringify(data))
-      localStorage.setItem("userId", data._id)
-      localStorage.setItem("token", data.token)
+
+      if (typeof window !== "undefined"){
+        localStorage.setItem("user", JSON.stringify(data))
+        localStorage.setItem("userId", data._id)
+        localStorage.setItem("token", data.token)
+      };
+   
       // Redirect after login
     },
     onError: () => {
