@@ -11,10 +11,9 @@ import { User, UserSchema } from './schemas/user.schema';
 import { Campaign, CampaignSchema } from './schemas/campaign.schema';
 import { Submission, SubmissionSchema } from './schemas/submission.schema';
 import { AuthModule } from './auth/auth.module';
-//const DB_URL=process.env.DB_URL;
 @Module({
   imports: [
-    MongooseModule.forRoot("mongodb+srv://jkmigiro:pr1smas@cluster0.sdp8t.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"),
+    MongooseModule.forRoot(process.env.DB_URL || "mongodb://localhost/acaif"),
     MongooseModule.forFeature([
       { name: Campaign.name, schema: CampaignSchema },
       { name: User.name, schema: UserSchema },
